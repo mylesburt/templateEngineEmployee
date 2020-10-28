@@ -10,6 +10,8 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
 
+const team = [];
+
 function userPrompt() {
     return inquirer.prompt([
         {
@@ -25,8 +27,31 @@ function userPrompt() {
     ]);
 }
 
-
-
+//Manager questions...
+function managerQuestions() {
+    return inquirer.prompt([
+        {
+            type: "input",
+            name: "managerName",
+            message: "Insert Manager's name:",
+        },
+        {
+            type: "input",
+            name: "managerId",
+            message: "Insert Manager's ID:",
+        },
+        {
+            type: "input",
+            name: "managerEmail",
+            message: "Insert Manager's email:",
+        },
+        {
+            type: "input",
+            name: "managerOfficeNo",
+            message: "Insert Manager's office number:",
+        },
+    ]);
+}
 
 
 // Write code to use inquirer to gather information about the development team members,
