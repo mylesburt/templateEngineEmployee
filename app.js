@@ -119,6 +119,61 @@ function engineerQuestions() {
     ]);
 }
 
+function createHTML() {
+    const HTML = render(team);
+}
+
+async function init() {
+    try {
+        const managerInfo = await managerQuestions();
+        const newManager = new Manager(
+            managerInfo.managerName,
+            managerInfo.managerId,
+            managerInfo.managerEmail,
+            managerInfo.managerOfficeNo
+        );
+        team.push(newManager);
+        createNewTeamMember();
+    } catch (err) {
+        console.log(err);
+    }
+}
+
+async function createNewTeamMember() {
+    const newEmployee = await userPrompt();
+    switch (newEmployee.teamMember) {
+        case "Engineer":
+            const engineerInfo = await engineerQuestions()
+            const newEngineer = new Engineer(
+                newEngineer.engineerName,
+                newEngineer.engineerId,
+                newEngineer.engineerEmail,
+                newEngineer.engineerGit
+            );
+            team.push(newEngineer);
+            createNewTeamMember();
+            break;
+        case "Intern":
+            const internInfo = await internQuestions();
+            const newIntern = new Intern(
+                newIntern.internName,
+                newIntern.internId,
+                newIntern.internEmail,
+                newIntern.internSchool
+            );
+            team.push(newIntern);
+            createNewTeamMember();
+            break;
+        default:
+            createHTML();
+            console.log("Team updated, please refresh browser.");
+    }
+    console.log(team);
+}
+
+init();
+
+
 
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
