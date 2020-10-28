@@ -65,13 +65,6 @@ function internQuestions() {
             type: "input",
             name: "internId",
             message: "Insert Intern's ID:",
-            validate: function (answer) {
-                if (answer === `${answer.managerId}` || `${answer.engineerId}`) {
-                    return console.log(
-                        "This ID is already taken. Please enter a new ID."
-                    );
-                }
-            },
         },
         {
             type: "input",
@@ -98,13 +91,6 @@ function engineerQuestions() {
             type: "input",
             name: "engineerId",
             message: "Insert Engineer's ID:",
-            validate: function (answer) {
-                if (answer === `${answer.managerId}` || `${answer.internId}`) {
-                    return console.log(
-                        "This ID is already taken. Please enter a new ID."
-                    );
-                }
-            },
         },
         {
             type: "input",
