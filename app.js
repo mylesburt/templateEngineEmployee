@@ -120,7 +120,13 @@ function engineerQuestions() {
 }
 
 function createHTML() {
-    const HTML = render(team);
+    try {
+        const HTML = render(team);
+        fs.writeFileSync(outputPath, HTML);
+        console.log("Successfully generated team.html");
+    } catch (err) {
+        console.log(err);
+    }
 }
 
 async function init() {
@@ -145,10 +151,10 @@ async function createNewTeamMember() {
         case "Engineer":
             const engineerInfo = await engineerQuestions()
             const newEngineer = new Engineer(
-                newEngineer.engineerName,
-                newEngineer.engineerId,
-                newEngineer.engineerEmail,
-                newEngineer.engineerGit
+                engineerInfo.engineerName,
+                engineerInfo.engineerId,
+                engineerInfo.engineerEmail,
+                engineerInfo.engineerGit
             );
             team.push(newEngineer);
             createNewTeamMember();
@@ -156,10 +162,10 @@ async function createNewTeamMember() {
         case "Intern":
             const internInfo = await internQuestions();
             const newIntern = new Intern(
-                newIntern.internName,
-                newIntern.internId,
-                newIntern.internEmail,
-                newIntern.internSchool
+                internInfo.internName,
+                internInfo.internId,
+                internInfo.internEmail,
+                internInfo.internSchool
             );
             team.push(newIntern);
             createNewTeamMember();
