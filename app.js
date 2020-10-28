@@ -72,7 +72,6 @@ function internQuestions() {
                     );
                 }
             },
-
         },
         {
             type: "input",
@@ -88,7 +87,37 @@ function internQuestions() {
 }
 
 //ENGINEER questions...
-
+function engineerQuestions() {
+    return inquirer.prompt([
+        {
+            type: "input",
+            name: "engineerName",
+            message: "Insert name of Engineer:",
+        },
+        {
+            type: "input",
+            name: "engineerId",
+            message: "Insert Engineer's ID:",
+            validate: function (answer) {
+                if (answer === `${answer.managerId}` || `${answer.internId}`) {
+                    return console.log(
+                        "This ID is already taken. Please enter a new ID."
+                    );
+                }
+            },
+        },
+        {
+            type: "input",
+            name: "engineerEmail",
+            message: "Insert Engineer's email:",
+        },
+        {
+            type: "input",
+            name: "engineerGit",
+            message: "Insert Engineer's GitHub username:",
+        },
+    ]);
+}
 
 
 // Write code to use inquirer to gather information about the development team members,
