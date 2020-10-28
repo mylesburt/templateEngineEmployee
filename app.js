@@ -27,13 +27,13 @@ function userPrompt() {
     ]);
 }
 
-//Manager questions...
+//MANAGER questions...
 function managerQuestions() {
     return inquirer.prompt([
         {
             type: "input",
             name: "managerName",
-            message: "Insert Manager's name:",
+            message: "Insert name of Manager:",
         },
         {
             type: "input",
@@ -52,6 +52,43 @@ function managerQuestions() {
         },
     ]);
 }
+
+//INTERN questions...
+function internQuestions() {
+    return inquirer.prompt([
+        {
+            type: "input",
+            name: "internName",
+            message: "Insert name of Intern:",
+        },
+        {
+            type: "input",
+            name: "internId",
+            message: "Insert Intern's ID:",
+            validate: function (answer) {
+                if (answer === `${answer.managerId}` || `${answer.engineerId}`) {
+                    return console.log(
+                        "This ID is already taken. Please enter a new ID."
+                    );
+                }
+            },
+
+        },
+        {
+            type: "input",
+            name: "internEmail",
+            message: "Insert Intern's email:",
+        },
+        {
+            type: "input",
+            name: "internSchool",
+            message: "What school does the Intern attend?",
+        },
+    ]);
+}
+
+//ENGINEER questions...
+
 
 
 // Write code to use inquirer to gather information about the development team members,
